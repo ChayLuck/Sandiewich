@@ -1,0 +1,642 @@
+[gd_scene format=3 uid="uid://b3n1tfd55x3hk"]
+
+[ext_resource type="Script" uid="uid://b76w2qmyawkhd" path="res://game/game_room.gd" id="1_game"]
+[ext_resource type="Script" uid="uid://d0uvg223x614a" path="res://monster/monster_controller.gd" id="2_monster"]
+[ext_resource type="Script" uid="uid://caks6uklwrt5u" path="res://table/sandwich_builder.gd" id="3_sandwich"]
+[ext_resource type="Script" uid="uid://bm7it3tgk6n5m" path="res://table/ingredient.gd" id="4_ingredient"]
+[ext_resource type="Script" path="res://table/clickable_area.gd" id="5_clickable_area"]
+[ext_resource type="Texture2D" uid="uid://nvvew3s11qlc" path="res://assets/monster/monster_look_up.png" id="6_monsterup"]
+[ext_resource type="Texture2D" uid="uid://ci5ylwf0hj3qt" path="res://assets/ingredients/butter.png" id="7_butter"]
+[ext_resource type="Texture2D" uid="uid://doudu8mgr5ayr" path="res://assets/ingredients/bread.png" id="8_bread"]
+[ext_resource type="Texture2D" uid="uid://cbc3xgjdik7es" path="res://assets/ingredients/jam.png" id="9_jam"]
+[ext_resource type="Texture2D" uid="uid://ddrprbd8qt7kh" path="res://assets/ingredients/plate.png" id="10_plate"]
+[ext_resource type="Texture2D" uid="uid://ccmfps7vboiha" path="res://assets/ingredients/bread_layer.png" id="11_bread_layer"]
+[ext_resource type="Texture2D" uid="uid://bfuv4mrsltjr8" path="res://assets/ingredients/butter_layer.png" id="12_butter_layer"]
+[ext_resource type="Texture2D" uid="uid://drsu4k2jo7v40" path="res://assets/ingredients/jam_layer.png" id="13_jam_layer"]
+[ext_resource type="Texture2D" uid="uid://0456ruti1fdk" path="res://assets/ui/scoreboard.png" id="14_scoreboard"]
+[ext_resource type="FontFile" uid="uid://bgrqsocrdcvvs" path="res://assets/fonts/pixel_score_font.ttf" id="15_pixelfont"]
+[ext_resource type="Texture2D" uid="uid://cfhuv36fhsksy" path="res://assets/ui/moneypot.png" id="16_moneypot"]
+[ext_resource type="Texture2D" uid="uid://dlcnqbpfdxqp4" path="res://assets/monster/monster_shotgun.png" id="17_shotgun"]
+[ext_resource type="Script" uid="uid://bp07getrhcmrr" path="res://table/shop_ingredient.gd" id="18_shop_ingredient"]
+[ext_resource type="Texture2D" uid="uid://ddu4vyr1qwqso" path="res://assets/ingredients/ice_cream.png" id="19_ice_cream"]
+[ext_resource type="Texture2D" uid="uid://bxrkfsjo1obm4" path="res://assets/ingredients/chocolate.png" id="20_chocolate"]
+[ext_resource type="Texture2D" uid="uid://donn6ovwjg1tc" path="res://assets/ingredients/ice_cream_layer.png" id="21_ice_cream_layer"]
+[ext_resource type="Texture2D" uid="uid://1y2jeega3bdj" path="res://assets/ingredients/chocolate_layer.png" id="22_chocolate_layer"]
+[ext_resource type="Shader" uid="uid://crvywbaajw4ri" path="res://assets/shaders/vignette.gdshader" id="25_vignette_shader"]
+[ext_resource type="Script" uid="uid://dg6hqdo1i42ql" path="res://table/combo_potion_item.gd" id="26_combo_potion"]
+[ext_resource type="Texture2D" uid="uid://bkw3jfmatsil4" path="res://assets/ingredients/combo_potion.png" id="27_combo_potion_tex"]
+[ext_resource type="Script" uid="uid://djrybvcx011sy" path="res://table/gamble_coin_item.gd" id="28_gamble_coin"]
+[ext_resource type="Texture2D" uid="uid://drli6tblx8d6f" path="res://assets/ingredients/gamble_coin.png" id="29_gamble_coin_tex"]
+[ext_resource type="AudioStream" uid="uid://c87msd2go1dg8" path="res://assets/sounds/potion.mp3" id="30_potion_sfx"]
+[ext_resource type="AudioStream" uid="uid://bcvu286aogmoo" path="res://assets/sounds/coinflip.mp3" id="31_coinflip_sfx"]
+[ext_resource type="AudioStream" uid="uid://boal76fc6mmjv" path="res://assets/sounds/bread.wav" id="32_bread_sfx"]
+[ext_resource type="AudioStream" uid="uid://e5uwstetnaj8" path="res://assets/sounds/money.mp3" id="33_money_sfx"]
+[ext_resource type="AudioStream" uid="uid://bo4xbmtbobkkr" path="res://assets/sounds/lick.mp3" id="34_icecream_sfx"]
+[ext_resource type="AudioStream" uid="uid://bqny7doqwl756" path="res://assets/sounds/squirtt.wav" id="35_chocolate_sfx"]
+[ext_resource type="AudioStream" uid="uid://ba3jqebivdgdq" path="res://assets/sounds/shotgunn.wav" id="36_shotgun_sfx"]
+[ext_resource type="AudioStream" uid="uid://b77rmq51x5eti" path="res://assets/sounds/jellyy.wav" id="37_jam_sfx"]
+[ext_resource type="AudioStream" uid="uid://ccheb7od8aib4" path="res://assets/sounds/butterr.wav" id="38_butter_sfx"]
+[ext_resource type="Texture2D" uid="uid://cuyivlpre6lhq" path="res://assets/ui/suicide_button.png" id="39_suicide_button_tex"]
+[ext_resource type="PackedScene" uid="uid://c5f4cdwnsquke" path="res://ui/settings_panel.tscn" id="40_settings_panel"]
+[ext_resource type="AudioStream" uid="uid://cngdmswbhid50" path="res://assets/sounds/eating.wav" id="41_eating_sfx"]
+[ext_resource type="AudioStream" uid="uid://c6x1gs6sp7k5" path="res://assets/sounds/die.wav" id="42_die_sfx"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2gyy6"]
+load_path = "res://.godot/imported/table.png-262c6684dbf74d6936ea9cd8ec62201d.ctex"
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q26cw"]
+radius = 16.364944
+height = 57.275238
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_suxou"]
+radius = 19.89215
+height = 54.727173
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hcy2p"]
+radius = 21.951233
+height = 53.65854
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ptpmr"]
+radius = 28.97728
+height = 57.95456
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mso66"]
+radius = 8.955231
+height = 28.16092
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fqvku"]
+radius = 25.355942
+height = 86.445465
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_f3yiy"]
+radius = 17.105316
+height = 52.631744
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_v0q63"]
+radius = 57.214207
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vignette"]
+shader = ExtResource("25_vignette_shader")
+shader_parameter/base_darken = 0.12
+shader_parameter/vignette_intensity = 0.75
+shader_parameter/vignette_radius = 0.55
+shader_parameter/vignette_softness = 0.6
+shader_parameter/vignette_color = Color(0, 0, 0, 1)
+
+[node name="GameRoom" type="Node2D" unique_id=323818329]
+process_mode = 3
+script = ExtResource("1_game")
+
+[node name="PotionSound" type="AudioStreamPlayer" parent="." unique_id=1039180169]
+stream = ExtResource("30_potion_sfx")
+bus = &"SFX"
+
+[node name="CoinFlipSound" type="AudioStreamPlayer" parent="." unique_id=2018934141]
+stream = ExtResource("31_coinflip_sfx")
+bus = &"SFX"
+
+[node name="BreadSound" type="AudioStreamPlayer" parent="." unique_id=930827176]
+stream = ExtResource("32_bread_sfx")
+bus = &"SFX"
+
+[node name="MoneySound" type="AudioStreamPlayer" parent="." unique_id=1944785110]
+stream = ExtResource("33_money_sfx")
+bus = &"SFX"
+
+[node name="IceCreamSound" type="AudioStreamPlayer" parent="." unique_id=208327312]
+stream = ExtResource("34_icecream_sfx")
+bus = &"SFX"
+
+[node name="ChocolateSound" type="AudioStreamPlayer" parent="." unique_id=971967619]
+stream = ExtResource("35_chocolate_sfx")
+bus = &"SFX"
+
+[node name="ShotgunSound" type="AudioStreamPlayer" parent="." unique_id=1175101697]
+stream = ExtResource("36_shotgun_sfx")
+bus = &"SFX"
+
+[node name="JamSound" type="AudioStreamPlayer" parent="." unique_id=832862821]
+stream = ExtResource("37_jam_sfx")
+bus = &"SFX"
+
+[node name="ButterSound" type="AudioStreamPlayer" parent="." unique_id=1651524257]
+stream = ExtResource("38_butter_sfx")
+bus = &"SFX"
+
+[node name="EatingSound" type="AudioStreamPlayer" parent="." unique_id=1651524258]
+stream = ExtResource("41_eating_sfx")
+bus = &"SFX"
+
+[node name="DieSound" type="AudioStreamPlayer" parent="." unique_id=1651524259]
+stream = ExtResource("42_die_sfx")
+bus = &"SFX"
+
+[node name="TableBackground" type="Sprite2D" parent="." unique_id=1127745884]
+texture = SubResource("CompressedTexture2D_2gyy6")
+centered = false
+
+[node name="MonsterController" type="Node" parent="." unique_id=1144666916]
+process_mode = 1
+script = ExtResource("2_monster")
+
+[node name="MonsterSprite" type="Sprite2D" parent="." unique_id=200237976]
+z_index = -1
+position = Vector2(473, 150)
+scale = Vector2(2.799993, 2.799993)
+texture = ExtResource("6_monsterup")
+
+[node name="ShotgunSprite" type="Sprite2D" parent="." unique_id=1058623741]
+visible = false
+z_index = 2
+position = Vector2(473.00003, 354)
+rotation = -0.01167047
+scale = Vector2(3.1583056, 3.1583056)
+texture = ExtResource("17_shotgun")
+
+[node name="SandwichBuilder" type="Node" parent="." unique_id=718558728]
+process_mode = 1
+script = ExtResource("3_sandwich")
+
+[node name="LayersRoot" type="Node2D" parent="." unique_id=710888493]
+z_index = 1
+position = Vector2(478, 460)
+
+[node name="LayerBreadBottom" type="Sprite2D" parent="LayersRoot" unique_id=2096277945]
+visible = false
+position = Vector2(8, 26)
+scale = Vector2(2.32, 2.32)
+texture = ExtResource("11_bread_layer")
+
+[node name="LayerButter" type="Sprite2D" parent="LayersRoot" unique_id=1022025477]
+visible = false
+position = Vector2(12.999999, 17.999998)
+scale = Vector2(2.2799976, 2.2799976)
+texture = ExtResource("12_butter_layer")
+
+[node name="LayerJam" type="Sprite2D" parent="LayersRoot" unique_id=1827630744]
+visible = false
+position = Vector2(13, 18.999996)
+scale = Vector2(2.56, 2.56)
+texture = ExtResource("13_jam_layer")
+
+[node name="LayerIceCream" type="Sprite2D" parent="LayersRoot" unique_id=400636756]
+visible = false
+position = Vector2(13, 14)
+scale = Vector2(1.9999976, 1.9999976)
+texture = ExtResource("21_ice_cream_layer")
+
+[node name="LayerChocolate" type="Sprite2D" parent="LayersRoot" unique_id=74131559]
+visible = false
+position = Vector2(16, 14)
+scale = Vector2(1.9200025, 1.9200025)
+texture = ExtResource("22_chocolate_layer")
+
+[node name="LayerBreadTop" type="Sprite2D" parent="LayersRoot" unique_id=1932276057]
+visible = false
+position = Vector2(2, 4)
+scale = Vector2(2.28, 2.28)
+texture = ExtResource("11_bread_layer")
+
+[node name="IngredientButter" type="Area2D" parent="." unique_id=90798522]
+process_mode = 1
+position = Vector2(323, 369)
+scale = Vector2(2.2, 2.2)
+script = ExtResource("4_ingredient")
+type = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="IngredientButter" unique_id=1535439759]
+position = Vector2(-1.3636292, 3.1818192)
+rotation = 1.5738131
+shape = SubResource("CapsuleShape2D_q26cw")
+
+[node name="Sprite2D" type="Sprite2D" parent="IngredientButter" unique_id=864847839]
+texture = ExtResource("7_butter")
+
+[node name="IngredientBread" type="Area2D" parent="." unique_id=968215352]
+process_mode = 1
+position = Vector2(484.00003, 329)
+scale = Vector2(3.3999987, 2.4757266)
+script = ExtResource("4_ingredient")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="IngredientBread" unique_id=1250689328]
+position = Vector2(-0.2906952, -0.58135986)
+rotation = 1.1561922
+scale = Vector2(1.0000002, 1.0000002)
+shape = SubResource("CapsuleShape2D_suxou")
+
+[node name="Sprite2D" type="Sprite2D" parent="IngredientBread" unique_id=142535958]
+texture = ExtResource("8_bread")
+
+[node name="IngredientJam" type="Area2D" parent="." unique_id=266424261]
+process_mode = 1
+position = Vector2(637, 351)
+scale = Vector2(1.84, 1.84)
+script = ExtResource("4_ingredient")
+type = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="IngredientJam" unique_id=80661074]
+position = Vector2(-1.8292854, 7.317063)
+shape = SubResource("CapsuleShape2D_hcy2p")
+
+[node name="Sprite2D" type="Sprite2D" parent="IngredientJam" unique_id=1389282702]
+texture = ExtResource("9_jam")
+
+[node name="IngredientIceCream" type="Area2D" parent="." unique_id=1748302915]
+process_mode = 1
+position = Vector2(286, 473.00003)
+scale = Vector2(1.76, 1.76)
+script = ExtResource("18_shop_ingredient")
+price = 10
+type = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="IngredientIceCream" unique_id=400785226]
+position = Vector2(0, 2.2727273)
+scale = Vector2(0.8409091, 1.0454546)
+shape = SubResource("CapsuleShape2D_ptpmr")
+
+[node name="Sprite2D" type="Sprite2D" parent="IngredientIceCream" unique_id=315919922]
+texture = ExtResource("19_ice_cream")
+
+[node name="PriceLabel" type="Label" parent="IngredientIceCream" unique_id=1985521728]
+offset_left = -25.0
+offset_top = -10.0
+offset_right = 25.0
+offset_bottom = 16.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("15_pixelfont")
+theme_override_font_sizes/font_size = 16
+text = "10"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="IngredientChocolate" type="Area2D" parent="." unique_id=1748302916]
+process_mode = 1
+position = Vector2(686, 472)
+scale = Vector2(1.72, 1.72)
+script = ExtResource("18_shop_ingredient")
+price = 20
+type = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="IngredientChocolate" unique_id=1908022999]
+position = Vector2(-1.1627905, 1.7441858)
+scale = Vector2(1.5581396, 2.0232558)
+shape = SubResource("CapsuleShape2D_mso66")
+
+[node name="Sprite2D" type="Sprite2D" parent="IngredientChocolate" unique_id=1644063310]
+texture = ExtResource("20_chocolate")
+
+[node name="PriceLabel" type="Label" parent="IngredientChocolate" unique_id=2087755617]
+offset_left = -25.0
+offset_top = -10.0
+offset_right = 25.0
+offset_bottom = 16.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("15_pixelfont")
+theme_override_font_sizes/font_size = 16
+text = "20"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlateArea" type="Area2D" parent="." unique_id=2052180182]
+process_mode = 1
+script = ExtResource("5_clickable_area")
+position = Vector2(489.99997, 447.00003)
+scale = Vector2(2.8, 2.8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlateArea" unique_id=1240219685]
+position = Vector2(1.7857013, 6.7857003)
+rotation = 1.5609729
+scale = Vector2(0.9999996, 0.9999996)
+shape = SubResource("CapsuleShape2D_fqvku")
+
+[node name="Sprite2D" type="Sprite2D" parent="PlateArea" unique_id=2120956597]
+position = Vector2(-8.583069e-06, 12.857134)
+texture = ExtResource("10_plate")
+
+[node name="ComboPotionItem" type="Area2D" parent="." unique_id=922539541]
+process_mode = 1
+position = Vector2(725.00006, 239.00002)
+scale = Vector2(1.5199951, 1.5199951)
+script = ExtResource("26_combo_potion")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ComboPotionItem" unique_id=392055713]
+position = Vector2(-1.3157938, -1.003871e-05)
+shape = SubResource("CapsuleShape2D_f3yiy")
+
+[node name="Sprite2D" type="Sprite2D" parent="ComboPotionItem" unique_id=2007028687]
+texture = ExtResource("27_combo_potion_tex")
+
+[node name="PriceLabel" type="Label" parent="ComboPotionItem" unique_id=604286277]
+offset_left = -28.947462
+offset_top = 18.421112
+offset_right = 21.052538
+offset_bottom = 44.421112
+scale = Vector2(1.1578952, 1.1578952)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("15_pixelfont")
+theme_override_font_sizes/font_size = 16
+text = "25"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GambleCoinItem" type="Area2D" parent="." unique_id=1575700049]
+process_mode = 1
+position = Vector2(817, 239)
+scale = Vector2(0.7, 0.7)
+script = ExtResource("28_gamble_coin")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GambleCoinItem" unique_id=1118761260]
+position = Vector2(0, 9.059906e-06)
+scale = Vector2(0.99999994, 0.99999994)
+shape = SubResource("CircleShape2D_v0q63")
+
+[node name="Sprite2D" type="Sprite2D" parent="GambleCoinItem" unique_id=783275552]
+texture = ExtResource("29_gamble_coin_tex")
+
+[node name="PriceLabel" type="Label" parent="GambleCoinItem" unique_id=96263125]
+offset_left = -55.71437
+offset_top = 41.42857
+offset_right = -5.7143707
+offset_bottom = 67.42857
+scale = Vector2(2.3714285, 2.3714285)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("15_pixelfont")
+theme_override_font_sizes/font_size = 16
+text = "5"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=1727444193]
+
+[node name="Vignette" type="ColorRect" parent="UI" unique_id=1282281240]
+material = SubResource("ShaderMaterial_vignette")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ScoreBoard" type="TextureRect" parent="UI" unique_id=2078652592]
+offset_left = 62.0
+offset_top = 3.0
+offset_right = 218.0
+offset_bottom = 159.0
+scale = Vector2(1.6399987, 1.6399987)
+texture = ExtResource("14_scoreboard")
+
+[node name="ScoreValueLabel" type="Label" parent="UI/ScoreBoard" unique_id=1943513404]
+texture_filter = 1
+layout_mode = 0
+offset_left = 13.679249
+offset_top = 32.547188
+offset_right = 145.67924
+offset_bottom = 84.54719
+theme_override_colors/font_color = Color(0.15, 0.15, 0.15, 1)
+theme_override_fonts/font = ExtResource("15_pixelfont")
+theme_override_font_sizes/font_size = 28
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MoneyBoard" type="TextureRect" parent="UI" unique_id=1842044418]
+offset_left = 654.00006
+offset_top = 14.000001
+offset_right = 774.00006
+offset_bottom = 134.0
+scale = Vector2(2.0800023, 2.0800023)
+texture = ExtResource("16_moneypot")
+
+[node name="MoneyValueLabel" type="Label" parent="UI/MoneyBoard" unique_id=1916426819]
+texture_filter = 1
+layout_mode = 0
+offset_left = 40.384563
+offset_top = 22.11536
+offset_right = 105.38457
+offset_bottom = 62.11536
+theme_override_colors/font_color = Color(0.15, 0.15, 0.15, 1)
+theme_override_fonts/font = ExtResource("15_pixelfont")
+theme_override_font_sizes/font_size = 22
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SpeedBoard" type="TextureRect" parent="UI" unique_id=171320922]
+visible = false
+offset_left = 133.0
+offset_top = -25.0
+offset_right = 253.0
+offset_bottom = 95.0
+
+[node name="SpeedValueLabel" type="Label" parent="UI/SpeedBoard" unique_id=1841722598]
+texture_filter = 1
+layout_mode = 0
+offset_left = 10.0
+offset_top = 40.0
+offset_right = 110.0
+offset_bottom = 90.0
+pivot_offset = Vector2(50, 25)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("15_pixelfont")
+theme_override_font_sizes/font_size = 24
+text = "10"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ComboBoard" type="TextureRect" parent="UI" unique_id=70709241]
+offset_left = 27.000008
+offset_top = 33.0
+offset_right = 147.0
+offset_bottom = 153.0
+scale = Vector2(2.76, 2.76)
+
+[node name="ComboValueLabel" type="Label" parent="UI/ComboBoard" unique_id=1947227233]
+texture_filter = 1
+layout_mode = 0
+offset_left = 8.0
+offset_top = 38.0
+offset_right = 112.0
+offset_bottom = 82.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("15_pixelfont")
+theme_override_font_sizes/font_size = 20
+text = "0x"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ComboTimerBarBg" type="ColorRect" parent="UI" unique_id=827427835]
+offset_left = 108.0
+offset_top = 222.0
+offset_right = 268.0
+offset_bottom = 240.0
+color = Color(0.12, 0.12, 0.12, 0.85)
+
+[node name="ComboTimerBarFill" type="ColorRect" parent="UI/ComboTimerBarBg" unique_id=1341016564]
+layout_mode = 0
+offset_right = 160.0
+offset_bottom = 18.0
+color = Color(0.2, 0.85, 0.2, 1)
+
+[node name="SpeedFlashLabel" type="Label" parent="UI" unique_id=1577859422]
+visible = false
+offset_left = 29.0
+offset_top = 239.0
+offset_right = 349.0
+offset_bottom = 299.0
+pivot_offset = Vector2(160, 30)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("15_pixelfont")
+theme_override_font_sizes/font_size = 28
+text = "Fast!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GameOverPanel" type="Control" parent="UI" unique_id=205340940]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Dim" type="ColorRect" parent="UI/GameOverPanel" unique_id=1721665958]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 0.75)
+
+[node name="FinalScoreLabel" type="Label" parent="UI/GameOverPanel" unique_id=1353157986]
+layout_mode = 0
+offset_left = 360.0
+offset_top = 200.0
+text = "Score: 0"
+
+[node name="HighScoreLabel" type="Label" parent="UI/GameOverPanel" unique_id=1436720396]
+layout_mode = 0
+offset_left = 360.0
+offset_top = 230.0
+text = "High Score: 0"
+
+[node name="RestartButton" type="Button" parent="UI/GameOverPanel" unique_id=1720485756]
+layout_mode = 0
+offset_left = 400.0
+offset_top = 280.0
+text = "Play Again"
+
+[node name="KillFlash" type="ColorRect" parent="UI" unique_id=1282490141]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="SuicideDarken" type="ColorRect" parent="UI" unique_id=-400749591]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color(0, 0, 0, 0.95)
+
+[node name="BloodSplatter" type="CPUParticles2D" parent="UI" unique_id=-400749590]
+position = Vector2(480, 270)
+emitting = false
+amount = 40
+lifetime = 0.7
+one_shot = true
+explosiveness = 1.0
+direction = Vector2(0, -1)
+spread = 180.0
+gravity = Vector2(0, 300)
+initial_velocity_min = 150.0
+initial_velocity_max = 420.0
+scale_amount_min = 2.5
+scale_amount_max = 6.0
+color = Color(0.55, 0, 0.02, 1)
+
+[node name="SuicideButton" type="TextureButton" parent="UI" unique_id=-400749589]
+process_mode = 1
+offset_left = 862.0
+offset_top = 434.0
+offset_right = 942.0
+offset_bottom = 514.0
+pivot_offset = Vector2(40, 40)
+texture_normal = ExtResource("39_suicide_button_tex")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="PauseMenu" type="Control" parent="UI" unique_id=-400749600]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Dim" type="ColorRect" parent="UI/PauseMenu" unique_id=-400749601]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 0.75)
+
+[node name="PauseButtons" type="Control" parent="UI/PauseMenu" unique_id=-400749602]
+anchors_preset = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="TitleLabel" type="Label" parent="UI/PauseMenu/PauseButtons" unique_id=-400749603]
+layout_mode = 0
+offset_left = 380.0
+offset_top = 140.0
+offset_right = 580.0
+offset_bottom = 180.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("15_pixelfont")
+theme_override_font_sizes/font_size = 28
+text = "Paused"
+horizontal_alignment = 1
+
+[node name="ResumeButton" type="Button" parent="UI/PauseMenu/PauseButtons" unique_id=-400749604]
+layout_mode = 0
+offset_left = 400.0
+offset_top = 210.0
+offset_right = 560.0
+offset_bottom = 250.0
+text = "Resume"
+
+[node name="SettingsButton" type="Button" parent="UI/PauseMenu/PauseButtons" unique_id=-400749605]
+layout_mode = 0
+offset_left = 400.0
+offset_top = 260.0
+offset_right = 560.0
+offset_bottom = 300.0
+text = "Settings"
+
+[node name="QuitButton" type="Button" parent="UI/PauseMenu/PauseButtons" unique_id=-400749606]
+layout_mode = 0
+offset_left = 400.0
+offset_top = 310.0
+offset_right = 560.0
+offset_bottom = 350.0
+text = "Quit to Menu"
+
+[node name="SettingsPanel" parent="UI/PauseMenu" unique_id=1750013685 instance=ExtResource("40_settings_panel")]
+visible = false
+anchors_preset = 0

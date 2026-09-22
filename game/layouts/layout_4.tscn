@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://dkem41au7ev5a"]
+
+[ext_resource type="Texture2D" uid="uid://d3ewe3q2brr62" path="res://assets/room/table.png" id="1_table"]
+[ext_resource type="Texture2D" uid="uid://ddrprbd8qt7kh" path="res://assets/ingredients/plate.png" id="2_plate"]
+[ext_resource type="Texture2D" uid="uid://ci5ylwf0hj3qt" path="res://assets/ingredients/butter.png" id="3_butter"]
+[ext_resource type="Texture2D" uid="uid://doudu8mgr5ayr" path="res://assets/ingredients/bread.png" id="4_bread"]
+[ext_resource type="Texture2D" uid="uid://cbc3xgjdik7es" path="res://assets/ingredients/jam.png" id="5_jam"]
+[ext_resource type="Texture2D" uid="uid://ddu4vyr1qwqso" path="res://assets/ingredients/ice_cream.png" id="6_ice_cream"]
+[ext_resource type="Texture2D" uid="uid://bxrkfsjo1obm4" path="res://assets/ingredients/chocolate.png" id="7_chocolate"]
+
+[node name="LayoutReference" type="Node2D" unique_id=1308428890]
+
+[node name="TableBackground" type="Sprite2D" parent="." unique_id=909540299]
+texture = ExtResource("1_table")
+centered = false
+
+[node name="PlateReference" type="Sprite2D" parent="." unique_id=649166650]
+position = Vector2(473.99997, 483)
+scale = Vector2(2.8, 2.8)
+texture = ExtResource("2_plate")
+
+[node name="ButterSpot" type="Sprite2D" parent="." unique_id=1818590774]
+position = Vector2(721, 467)
+scale = Vector2(2.2, 2.2)
+texture = ExtResource("3_butter")
+
+[node name="BreadSpot" type="Sprite2D" parent="." unique_id=1273636220]
+position = Vector2(641, 355.00003)
+scale = Vector2(3.3999975, 2.475726)
+texture = ExtResource("4_bread")
+
+[node name="JamSpot" type="Sprite2D" parent="." unique_id=694821074]
+position = Vector2(455, 317)
+scale = Vector2(1.84, 1.84)
+texture = ExtResource("5_jam")
+
+[node name="IceCreamSpot" type="Sprite2D" parent="." unique_id=1808898503]
+position = Vector2(304, 374)
+scale = Vector2(1.76, 1.76)
+texture = ExtResource("6_ice_cream")
+
+[node name="ChocolateSpot" type="Sprite2D" parent="." unique_id=768806654]
+position = Vector2(185, 475)
+scale = Vector2(1.72, 1.72)
+texture = ExtResource("7_chocolate")
