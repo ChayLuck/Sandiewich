@@ -32,7 +32,7 @@ Click / tap only.
 
 ## Play
 
-Play it in your browser or download it on [itch.io](#).
+Play it in your browser or download it on [itch.io](https://chayluck.itch.io/sandiewich).
 
 ## Built with
 
