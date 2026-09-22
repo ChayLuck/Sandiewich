@@ -37,3 +37,12 @@ Play it in your browser or download it on [itch.io](https://chayluck.itch.io/san
 ## Built with
 
 Godot 4 (GDScript)
+
+<img width="948" height="538" alt="Sandiewich 1" src="https://github.com/user-attachments/assets/bb39e9ee-cc2e-4b36-91a2-fb58a52446d3" />
+<img width="942" height="526" alt="Sandiewich menu" src="https://github.com/user-attachments/assets/6f5b6277-f9fc-4301-9890-3ca9e7d524c0" />
+<img width="950" height="533" alt="Sandiewich 3" src="https://github.com/user-attachments/assets/bb7eb331-7bdf-44ea-a320-c49fe9a90b4f" />
+<img width="942" height="545" alt="Sandiewich 2" src="https://github.com/user-attachments/assets/7c302b2e-5625-4131-816c-bc9fc0582916" />
+<img width="843" height="464" alt="tutorial1" src="https://github.com/user-attachments/assets/6c6e91ba-8f00-4444-8bf0-9c653aeb2366" />
+<img width="833" height="464" alt="tutorial2" src="https://github.com/user-attachments/assets/f34eae67-8b55-4996-8d44-f6873d0e8308" />
+<img width="827" height="463" alt="tutorial3" src="https://github.com/user-attachments/assets/0e5adff7-91c3-4f39-ab76-6724d2592c2c" />
+
